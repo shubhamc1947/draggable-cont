@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cont">
+        <div id="left">
+
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 1</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 2</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 3</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 1</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 1</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 1</div>
+            <div class="list" draggable="true"><img src="img/blur.png" class="img" alt="todo"> To Do List 1</div>
+        </div>
+        <div id="mid"></div>
+        <div id="right"></div>
+    </div>
+    <script>
+        const lists = document.getElementsByClassName("list");
+        const leftbox = document.getElementById("left");
+        const rightbox = document.getElementById("right");
+        const midbox = document.getElementById("mid");
+        
+        let selected = null;
+
+        for (let list of lists) {
+            list.addEventListener("dragstart", (e) => {
+                selected = e.target;
+            });
+        }
+
+        leftbox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+        });
+
+        leftbox.addEventListener("drop", (e) => {
+            e.preventDefault();
+            if (selected) {
+                
+                leftbox.appendChild(selected);
+                selected = null;
+            }
+        });
+
+        rightbox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+        });
+
+        rightbox.addEventListener("drop", (e) => {
+            e.preventDefault();
+            if (selected) {
+                console.log(selected)
+                const img=selected.querySelector(".img");
+                console.log(img)
+                rightbox.appendChild(selected);
+                selected = null;
+            }
+        });
+
+        midbox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+        });
+
+        midbox.addEventListener("drop", (e) => {
+            e.preventDefault();
+            if (selected) {
+                midbox.appendChild(selected);
+                selected = null;
+            }
+        });
+    </script>
+</body>
+</html>
